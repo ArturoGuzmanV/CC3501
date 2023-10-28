@@ -127,6 +127,13 @@ class OrbitCamera(Camera):
         self.position[0] = self.distance * np.sin(self.theta) * np.sin(self.phi)
         self.position[1] = self.distance * np.cos(self.theta)
         self.position[2] = self.distance * np.sin(self.theta) * np.cos(self.phi)
+   
+    def update_mouse(self, dx, dy):
+        sensibilidad = 0.005
+        self.phi += sensibilidad * dx
+        self.theta += sensibilidad * dy
+        self.theta = np.clip(self.theta, 0.01, np.pi - 0.01)
+        self.update()
 
 
 if __name__ == "__main__":
